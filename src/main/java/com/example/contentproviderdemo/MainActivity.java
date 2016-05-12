@@ -40,7 +40,7 @@ public class MainActivity extends AppCompatActivity {
                     updatePerson();
                     break;
                 case R.id.cancelClick:
-                    cancelPerson();
+                    deletePerson();
                     break;
             }
         }
@@ -51,10 +51,11 @@ public class MainActivity extends AppCompatActivity {
     /**
      * 删除person
      */
-    private void cancelPerson() {
+    private void deletePerson() {
         resolver = this.getContentResolver();
         Uri uri = Uri.parse("content://com.example.contentproviderdemo.hellocontentprovider/person/1");
         resolver.delete(uri, null, null);
+        Log.d("MainActivity", "删除方法");
     }
 
     /**
@@ -67,6 +68,7 @@ public class MainActivity extends AppCompatActivity {
         values.put(PersonMetaData.Person.NAME, "xiaoming");
         values.put(PersonMetaData.Person.AGE, 20);
         resolver.update(uri, values, null, null);
+        Log.d("MainActivity", "更新方法");
     }
 
     /**
@@ -83,6 +85,7 @@ public class MainActivity extends AppCompatActivity {
             Log.d("MainActivity", "id:" + id + "  name: " + name + "   age:" + age);
         }
         cursor.close();
+        Log.d("MainActivity", "查询方法");
     }
 
     /**
